@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sixbit"
+version = "0.0.1"
+description = "A framework for recreating original PDP-10 software in Python -- runs classic programs from their original FORTRAN-10 source on the forterp interpreter, under a TOPS-10-style monitor."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Nicholas J. Kisseberth", email = "nkissebe@gmail.com" }]
+keywords = ["pdp-10", "tops-10", "fortran", "fortran-10", "retrocomputing", "emulation", "forterp"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: System :: Emulators",
+]
+
+# No hard dependencies in this early placeholder release, so `pip install sixbit`
+# always succeeds. The runtime engine (forterp) and per-game distributions
+# (sixbit-empire, sixbit-decwar, ...) arrive in later releases.
+
+[project.urls]
+Homepage = "https://github.com/nyxcraft/sixbit"
+
+# sixbit is a PEP 420 namespace: this distribution ships sixbit.core and leaves
+# the sixbit/ and sixbit.games/ levels unowned, so sibling distributions
+# (sixbit-empire, ...) can add sixbit.games.* without colliding.
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["sixbit*"]
+namespaces = true
